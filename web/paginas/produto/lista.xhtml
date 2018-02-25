@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="../../template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <ui:define name="conteudo">
+        <h:form>
+            <p:dataTable var="p" value="#{produtoControle.produtoModelo}" >
+                <f:facet name="header">
+                    Produtos
+                </f:facet>
+                <p:column headerText="id">
+                    <h:outputText value="#{p.id}"/>
+                </p:column>
+
+                <p:column headerText="nome" filterBy="#{p.nome}">
+                    <h:outputText value="#{p.nome}"/>
+                </p:column>
+
+                <p:column headerText="preço" filterBy="#{p.preco}">
+                    <h:outputText value="#{p.preco}"/>
+                </p:column>
+
+                <p:column headerText="descrição">
+                    <h:outputText value="#{p.descricao}"/>
+                </p:column>
+                <p:column headerText="Categoria">
+                    <p:outputLabel value="#{p.categoria.nome}"/>
+                </p:column>
+
+                <p:column headerText="alterar">
+                    <p:commandButton ajax="false" value="editar"  action="#{produtoControle.editar()}"/>
+                </p:column>
+                <p:column headerText="excluir">
+                    <p:commandButton ajax="false" value="excluir"  action="#{produtoControle.excluirVoid()}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
